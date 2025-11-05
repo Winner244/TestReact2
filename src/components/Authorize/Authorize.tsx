@@ -11,7 +11,7 @@ type AuthorizeProps = {
 const Authorize: React.FC<AuthorizeProps> = ({ children, redirectTo = '/' }) => {
 
     const loggedIn = useAppSelector((s) => s.auth.loggedIn)
-    if (!loggedIn) 
+    if (!loggedIn)
         return <Navigate to={redirectTo} replace />
 
     return <>{children}</>

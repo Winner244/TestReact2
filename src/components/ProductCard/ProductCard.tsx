@@ -17,7 +17,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                 </h3>
                 <div className="product-card__body-meta">
                     {product.category} · ${product.price} {product.discountPercentage && <span>({product.discountPercentage}% off)</span>}
-                </div>
+                </div> 
                 <div className="product-card__body-rating">Rating: {product.rating ?? '—'}</div>
             </div>
         </article>
