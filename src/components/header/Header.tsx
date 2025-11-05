@@ -1,15 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../utils/hooks'
-import { login, logout } from '../features/auth/authSlice'
-import '../styles/header.less'
+
+import { useAppDispatch, useAppSelector } from '../../utils/hooks'
+import { login, logout } from '../../features/auth/authSlice'
+
+import './header.less'
 
 const Header: React.FC = () => {
   const loggedIn = useAppSelector((s) => s.auth.loggedIn)
   const dispatch = useAppDispatch()
 
   return (
-    <header className="app-header">
+  <header className="header">
       <h1><Link className='text-decoration-none' to={`/`}>Product Browser</Link></h1>
       
       <div className="auth">

@@ -1,11 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Product } from '../features/products/productsSlice'
-import '../styles/card.less'
+
+import { Product } from '../../features/products/productsSlice'
+
+import './productCard.less'
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   return (
-    <article className="card" role="article">
+  <article className="product-card" role="article">
       <div className="thumb">
         <img src={product.thumbnail ?? product.images?.[0]} alt={product.title} />
       </div>

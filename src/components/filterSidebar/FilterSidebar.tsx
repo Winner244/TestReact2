@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { FiltersSchema } from '../schemas/filterSchema'
 import { useSearchParams } from 'react-router-dom'
-import './filterSidebar/filterSidebar.less'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+import { FiltersSchema } from '../../schemas/filterSchema'
+
+import './filterSidebar.less'
 
 const FilterSidebar: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams()

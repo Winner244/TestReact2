@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import { z } from 'zod'
-import { useParams, Navigate, Link } from 'react-router-dom'
+import { useParams, Navigate, Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useEditor, EditorContent } from '@tiptap/react'
+import { FloatingMenu, BubbleMenu } from '@tiptap/react/menus'
 import StarterKit from '@tiptap/starter-kit'
 
 import { useAppDispatch, useAppSelector } from '../../utils/hooks'
@@ -25,6 +26,7 @@ const ProductEdit: React.FC = () => {
     const dispatch = useAppDispatch()
     const product = useAppSelector((s) => (id ? s.products.byId[Number(id)] : undefined))
     const loggedIn = useAppSelector((s) => s.auth.loggedIn)
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (id) dispatch(fetchProductById(Number(id)))
@@ -39,6 +41,11 @@ const ProductEdit: React.FC = () => {
     const editor = useEditor({
         extensions: [StarterKit],
         content: product?.description ?? '',
+        editorProps: {
+            attributes: {
+                class: 'form-control',
+            },
+        },
     })
 
     useEffect(() => {
@@ -49,20 +56,20 @@ const ProductEdit: React.FC = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [product, reset])
 
-    if (!loggedIn) return <Navigate to="/" replace />
-    if (!product) return <div style={{ padding: 20 }}>Loading product…</div>
+    if (!loggedIn) return <Navigate to={`/product/${product?.id}`} replace />
+    if (!product) return <div style={{ padding: 20 }}>Product not found</div>
 
     const onSubmit = (data: EditForm) => {
         const updated: Product = { ...product, ...data, description: editor?.getHTML() ?? product.description }
-        dispatch(upsertProduct(updated))
-        alert('Saved in memory (Redux)')
+        dispatch(upsertProduct(updated));
+        navigate(`/product/${updated.id}`);
     }
 
     return (
         <div className="product-edit-page container">
             <div className='card'>
                 <div className="card-header">
-                    Edit: <Link className='text-decoration-none' to={`/product/${product.id}`}>{product.title}</Link>
+                    <h3>Edit: <Link className='text-decoration-none' to={`/product/${product.id}`}>{product.title}</Link></h3>
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)} className="product-edit-page__form card-body">
 
@@ -97,10 +104,8 @@ const ProductEdit: React.FC = () => {
 
                     <div className="form-group">
                         <label className='product-edit-page__form-label'>
-                            Description (RTE)
-                            <div className="product-edit-page__form-editor">
-                                <EditorContent editor={editor} />
-                            </div>
+                            Description
+                            <EditorContent editor={editor} />
                         </label>
                     </div>
 
