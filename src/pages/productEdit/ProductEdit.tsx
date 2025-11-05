@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { z } from 'zod'
-import { useParams, Navigate, Link, useNavigate } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useEditor, EditorContent, EditorContext } from '@tiptap/react'
@@ -27,7 +27,6 @@ const ProductEdit: React.FC = () => {
     const { id } = useParams()
     const dispatch = useAppDispatch()
     const product = useAppSelector((s) => (id ? s.products.byId[Number(id)] : undefined))
-    const loggedIn = useAppSelector((s) => s.auth.loggedIn)
     const navigate = useNavigate()
     const [loading, setLoading] = useState(false)
 
@@ -67,7 +66,6 @@ const ProductEdit: React.FC = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [product, reset])
 
-    if (!loggedIn) return <Navigate to={`/product/${product?.id}`} replace />
     if (loading) return <div className='p-5'>Loading product...</div>
     if (!product) return <div className='p-5'>Product not found</div>
 
