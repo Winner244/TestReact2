@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import Home from './pages/home/Home'
 import ProductDetails from './pages/productDetails/ProductDetails'
 import ProductEdit from './pages/productEdit/ProductEdit'
-import Authorize from './components/authorize/Authorize'
+import Authorize from './components/authorization/Authorization'
 
 import CommonLayout from './layouts/CommonLayout/CommonLayout'
 

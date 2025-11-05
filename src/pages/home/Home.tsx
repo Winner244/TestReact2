@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../utils/hooks'
 import { fetchProducts } from '../../features/products/productsSlice'
-import ProductCard from '../../components/productCard/ProductCard'
+import ProductCard from '../../components/product-card/ProductCard'
 import FilterSidebar from '../../components/filterSidebar/FilterSidebar'
 
 import './home.less'
