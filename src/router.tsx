@@ -1,24 +1,12 @@
-import React from 'react'
-import { createBrowserRouter, redirect } from 'react-router-dom'
-import AppLayout from './ui/AppLayout'
-import ProductListPage from './pages/ProductList'
-import ProductDetailsPage from './pages/ProductDetails'
-import ProductEditPage from './pages/ProductEdit'
-import NotFoundPage from './pages/NotFound'
-import { requireAuth } from './auth/requireAuth'
+import { createBrowserRouter } from 'react-router-dom'
+import Home from './pages/Home'
+import ProductDetails from './pages/ProductDetails'
+import EditProduct from './pages/EditProduct'
+import './styles/global.less'
 
 export const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <AppLayout />,
-    children: [
-      { index: true, element: <ProductListPage /> },
-      { path: 'product/:id', element: <ProductDetailsPage /> },
-      {
-        path: 'product/:id/edit',
-        element: requireAuth(<ProductEditPage />)
-      },
-      { path: '*', element: <NotFoundPage /> }
-    ]
-  }
+  { path: '/', element: <Home /> },
+  { path: '/product/:id', element: <ProductDetails /> },
+  { path: '/product/:id/edit', element: <EditProduct /> },
+  { path: '*', element: <div style={{ padding: 20 }}>404 - Not Found</div> },
 ])

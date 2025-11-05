@@ -1,6 +1,5 @@
 import { useSearchParams } from 'react-router-dom'
 import { useMemo } from 'react'
-import { Filters } from '../schemas/filterSchema'
 
 export function useUrlFilters(): { filtersRaw: Record<string, string>; setParams: (obj: Record<string, string>) => void } {
   const [searchParams, setSearchParams] = useSearchParams()

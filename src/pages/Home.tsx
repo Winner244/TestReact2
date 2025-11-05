@@ -1,11 +1,17 @@
 import React, { useEffect, useMemo } from 'react'
+import { useSearchParams } from 'react-router-dom'
+
 import { useAppDispatch, useAppSelector } from '../utils/hooks'
 import { fetchProducts } from '../features/products/productsSlice'
 import ProductCard from '../components/ProductCard'
 import FilterSidebar from '../components/FilterSidebar'
 import Header from '../components/Header'
+
+import DataTable from 'datatables.net-react';
+import DataTablesCore from 'datatables.net-dt';
+
 import '../styles/home.less'
-import { useSearchParams } from 'react-router-dom'
+
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch()
@@ -41,21 +47,28 @@ const Home: React.FC = () => {
     })
   }, [products, searchParams])
 
+  DataTable.use(DataTablesCore);
+
   return (
     <div className="page-home">
-      <Header />
-      <FilterSidebar />
-      <main className="product-grid">
-        {status === 'loading' && <div className="empty">Loading products…</div>}
-        {status === 'idle' && filtered.length === 0 && <div className="empty">No products found</div>}
-        {status === 'idle' && filtered.length > 0 && (
-          <div className="grid">
-            {filtered.map((p) => (
-              <ProductCard key={p.id} product={p} />
-            ))}
-          </div>
-        )}
-      </main>
+      <div>
+        <Header />
+      </div>
+      <div className='page-home__body'>
+        <FilterSidebar />
+        <DataTable data={filtered} />
+        <main className="product-grid">
+          {status === 'loading' && <div className="empty">Loading products…</div>}
+          {status === 'idle' && filtered.length === 0 && <div className="empty">No products found</div>}
+          {status === 'idle' && filtered.length > 0 && (
+            <div className="grid">
+              {filtered.map((p) => (
+                <ProductCard key={p.id} product={p} />
+              ))}
+            </div>
+          )}
+        </main>
+      </div>
     </div>
   )
 }
