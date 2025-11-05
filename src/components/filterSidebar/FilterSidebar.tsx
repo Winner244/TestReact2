@@ -15,7 +15,8 @@ const FilterSidebar: React.FC = () => {
         initial[key] = value
         empty[key] = ''
     });
-    const { register, watch, handleSubmit, reset, formState: { errors } } = useForm({ resolver: customZodResolver(FiltersSchema), defaultValues: empty })
+    const { register, watch, handleSubmit, setValue, reset, getValues, formState: { errors } } 
+        = useForm({ resolver: customZodResolver(FiltersSchema) as any, defaultValues: empty })
     const [open, setOpen] = useState(false)
 
     useEffect(() => {
@@ -34,16 +35,38 @@ const FilterSidebar: React.FC = () => {
         setOpen(false)
     }
 
-    console.log('errors', errors);
-
-    const discountedOnly = watch('discountedOnly')
-    const minPrice = watch('minPrice')
-
     const resetAll = () => {
         setSearchParams({})
         reset(empty)
         setOpen(false)
     }
+
+    const discountedOnly = watch('discountedOnly')
+    const minPrice = watch('minPrice')
+    const maxPrice = watch('maxPrice')
+
+    // clear maxPrice when minPrice is empty and update URL with current form values
+    useEffect(() => {
+        if (maxPrice && !minPrice) {
+            setValue('maxPrice', '')
+
+            const vals = getValues()
+            onSubmit(vals)
+            reset(vals)
+        }
+    }, [minPrice, setValue, getValues])
+
+    // clear minDiscountPercent when discountedOnly is falsey and update URL with current form values
+    useEffect(() => {
+        if (!discountedOnly) {
+            setValue('minDiscountPercent', '')
+            
+            const vals = getValues()
+            onSubmit(vals)
+            reset(vals)
+        }
+    }, [discountedOnly, setValue, getValues])
+
 
     return (
         <aside className={`filter-sidebar ${open ? 'filter-sidebar--open' : ''}`} aria-hidden={!open && window.innerWidth < 700}>

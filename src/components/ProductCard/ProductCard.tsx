@@ -16,7 +16,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                     <Link to={`/product/${product.id}`}>{product.title}</Link>
                 </h3>
                 <div className="product-card__body-meta">
-                    {product.category} · ${product.price}
+                    {product.category} · ${product.price} {product.discountPercentage && <span>({product.discountPercentage}% off)</span>}
                 </div>
                 <div className="product-card__body-rating">Rating: {product.rating ?? '—'}</div>
             </div>
