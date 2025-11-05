@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSearchParams } from 'react-router-dom'
-import { customZodResolver } from '../../hooks/useUrlFilters'
+import { customZodResolver } from '../../hooks/customZodResolver'
 
 import { FiltersSchema } from './filterSchema'
 
