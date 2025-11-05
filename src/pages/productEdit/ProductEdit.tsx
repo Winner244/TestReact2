@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { z } from 'zod'
-import { useParams, Navigate } from 'react-router-dom'
+import { useParams, Navigate, Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useEditor, EditorContent } from '@tiptap/react'
@@ -59,53 +59,56 @@ const ProductEdit: React.FC = () => {
     }
 
     return (
-        <div className="product-edit-page">
-            <h2>Edit: {product.title}</h2>
-
-            <form onSubmit={handleSubmit(onSubmit)} className="product-edit-page__form">
-
-                <div className="form-group">
-                    <label className='product-edit-page__form-label'>
-                        Title
-                        <input className="form-control" {...register('title')} />
-                    </label>
+        <div className="product-edit-page container">
+            <div className='card'>
+                <div className="card-header">
+                    Edit: <Link className='text-decoration-none' to={`/product/${product.id}`}>{product.title}</Link>
                 </div>
+                <form onSubmit={handleSubmit(onSubmit)} className="product-edit-page__form card-body">
 
-                <div className="form-group">
-                    <label className='product-edit-page__form-label'>
-                        Price
-                        <input className="form-control" type="number" step="0.01" {...register('price', { valueAsNumber: true })} />
-                    </label>
-                </div>
+                    <div className="form-group">
+                        <label className='product-edit-page__form-label'>
+                            Title
+                            <input className="form-control" {...register('title')} />
+                        </label>
+                    </div>
 
-                <div className="form-group">
-                    <label className='product-edit-page__form-label'>
-                        Rating
-                        <input className="form-control" type="number" step="0.1" {...register('rating', { valueAsNumber: true })} />
-                    </label>
-                </div>
+                    <div className="form-group">
+                        <label className='product-edit-page__form-label'>
+                            Price
+                            <input className="form-control" type="number" step="0.01" {...register('price', { valueAsNumber: true })} />
+                        </label>
+                    </div>
+
+                    <div className="form-group">
+                        <label className='product-edit-page__form-label'>
+                            Rating
+                            <input className="form-control" type="number" step="0.1" {...register('rating', { valueAsNumber: true })} />
+                        </label>
+                    </div>
 
 
-                <div className="form-group">
-                    <label className='product-edit-page__form-label'>
-                        Discount %
-                        <input className="form-control" type="number" step="0.1" {...register('discountPercentage', { valueAsNumber: true })} />
-                    </label>
-                </div>
+                    <div className="form-group">
+                        <label className='product-edit-page__form-label'>
+                            Discount %
+                            <input className="form-control" type="number" step="0.1" {...register('discountPercentage', { valueAsNumber: true })} />
+                        </label>
+                    </div>
 
-                <div className="form-group">
-                    <label className='product-edit-page__form-label'>
-                        Description (RTE)
-                        <div className="product-edit-page__form-editor">
-                            <EditorContent editor={editor} />
-                        </div>
-                    </label>
-                </div>
+                    <div className="form-group">
+                        <label className='product-edit-page__form-label'>
+                            Description (RTE)
+                            <div className="product-edit-page__form-editor">
+                                <EditorContent editor={editor} />
+                            </div>
+                        </label>
+                    </div>
 
-                <div className="product-edit-page__form-actions">
-                    <button type="submit" className="btn btn-primary">Save</button>
-                </div>
-            </form>
+                    <div className="product-edit-page__form-actions">
+                        <button type="submit" className="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }

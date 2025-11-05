@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../utils/hooks'
 import { login, logout } from '../features/auth/authSlice'
 import '../styles/header.less'
@@ -9,17 +10,18 @@ const Header: React.FC = () => {
 
   return (
     <header className="app-header">
-      <h1>Product Browser</h1>
+      <h1><Link className='text-decoration-none' to={`/`}>Product Browser</Link></h1>
+      
       <div className="auth">
         {loggedIn ? (
           <>
             <span>Logged in</span>
-            <button onClick={() => dispatch(logout())}>Logout</button>
+            <button className='btn btn-danger' onClick={() => dispatch(logout())}>Logout</button>
           </>
         ) : (
           <>
             <span>Guest</span>
-            <button onClick={() => dispatch(login())}>Login</button>
+            <button className='btn btn-primary' onClick={() => dispatch(login())}>Login</button>
           </>
         )}
       </div>

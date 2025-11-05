@@ -1,12 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom'
 
 import Home from './pages/home/Home'
-import ProductDetails from './pages/ProductDetails'
+import ProductDetails from './pages/productDetails/ProductDetails'
 import ProductEdit from './pages/productEdit/ProductEdit'
 
-import CommonLayout from './layouts/CommonLayout'
-
-import './styles/global.less'
+import CommonLayout from './layouts/CommonLayout/CommonLayout'
 
 export const router = createBrowserRouter([
   {
