@@ -12,3 +12,4 @@ All bonuses are implemented:
 2. on mobile, render the sidebar as a left Drawer
 3. edit the description with an RTE (TipTap)
 
+Link: https://jolly-figolla-2c3ea1.netlify.app/
