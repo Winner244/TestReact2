@@ -45,13 +45,13 @@ const Home: React.FC = () => {
   }, [products, searchParams])
 
   return (
-    <div className="page-home">
+    <div className="home-page">
       <FilterSidebar />
-      <main className="page-home__products">
+      <main className="home-page__products">
         {status === 'loading' && <div className="empty">Loading products…</div>}
-        {status === 'idle' && filtered.length === 0 && <div className="page-home__products--empty">No products found</div>}
+        {status === 'idle' && filtered.length === 0 && <div className="home-page__products--empty">No products found</div>}
         {status === 'idle' && filtered.length > 0 && (
-          <div className="page-home__products-grid">
+          <div className="home-page__products-grid">
             {filtered.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}

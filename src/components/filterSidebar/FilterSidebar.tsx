@@ -37,28 +37,33 @@ const FilterSidebar: React.FC = () => {
   }
 
   return (
-    <aside className={`filter-sidebar ${open ? 'open' : ''}`} aria-hidden={!open && window.innerWidth < 700}>
-      <button className="toggle" onClick={() => setOpen((o) => !o)} aria-expanded={open}>
+    <aside className={`filter-sidebar ${open ? 'filter-sidebar--open' : ''}`} aria-hidden={!open && window.innerWidth < 700}>
+      <button className="filter-sidebar__toggle" onClick={() => setOpen((o) => !o)} aria-expanded={open}>
         Filters
       </button>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label>
+
+      <form className='filter-sidebar__form' onSubmit={handleSubmit(onSubmit)}>
+        <label className='filter-sidebar__form-label'>
           Search
           <input {...register('q')} placeholder="title" />
         </label>
-        <label>
+
+        <label className='filter-sidebar__form-label'>
           Categories (comma)
           <input {...register('categories')} placeholder="e.g. smartphones, laptops" />
         </label>
-        <label>
+
+        <label className='filter-sidebar__form-label'>
           Min price
           <input type="number" {...register('minPrice')} />
         </label>
-        <label>
+
+        <label className='filter-sidebar__form-label'>
           Max price
           <input type="number" {...register('maxPrice')} disabled={minPrice === undefined || minPrice === ''} />
         </label>
-        <label>
+
+        <label className='filter-sidebar__form-label'>
           Rating
           <select {...register('rating')}>
             <option value="">Any</option>
@@ -67,18 +72,21 @@ const FilterSidebar: React.FC = () => {
             <option value="2">2+</option>
           </select>
         </label>
-        <label>
+
+        <label className='filter-sidebar__form-label'>
           <input type="checkbox" {...register('discountedOnly')} /> Discounted only
         </label>
+
         {discountedOnly && (
-          <label>
+          <label className='filter-sidebar__form-label' >
             Min discount %
             <input type="number" {...register('minDiscountPercent')} />
           </label>
         )}
-        <div className="actions">
-          <button type="submit">Apply</button>
-          <button type="button" onClick={resetAll}>
+
+        <div className="filter-sidebar__form-actions">
+          <button className='btn btn-success' type="submit">Apply</button>
+          <button className='btn btn-danger' type="button" onClick={resetAll}>
             Reset
           </button>
         </div>

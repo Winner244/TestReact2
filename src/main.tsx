@@ -5,7 +5,7 @@ import { RouterProvider } from 'react-router-dom'
 import { router } from './router'
 import store from './store'
 
-import './styles/global.less';
+import './styles/main.less';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 createRoot(document.getElementById('root')!).render(

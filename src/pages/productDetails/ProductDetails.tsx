@@ -23,7 +23,7 @@ const ProductDetails: React.FC = () => {
                 <div className="card-header d-flex justify-content-between">
                     <h3>{product.title}</h3>
                     {loggedIn && (
-                        <Link className='btn btn-secondary' to={`/product/${product.id}/edit`}>Edit</Link>
+                        <Link className='btn btn-success' to={`/product/${product.id}/edit`}>Edit</Link>
                     )}
                 </div>
                 <div className="card-body">

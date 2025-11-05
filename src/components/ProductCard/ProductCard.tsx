@@ -8,17 +8,17 @@ import './productCard.less'
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   return (
   <article className="product-card" role="article">
-      <div className="thumb">
+      <div className="product-card__thumb">
         <img src={product.thumbnail ?? product.images?.[0]} alt={product.title} />
       </div>
-      <div className="body">
+      <div className="product-card__body">
         <h3>
           <Link to={`/product/${product.id}`}>{product.title}</Link>
         </h3>
-        <div className="meta">
+        <div className="product-card__body-meta">
           {product.category} · ${product.price}
         </div>
-        <div className="rating">Rating: {product.rating ?? '—'}</div>
+        <div className="product-card__body-rating">Rating: {product.rating ?? '—'}</div>
       </div>
     </article>
   )

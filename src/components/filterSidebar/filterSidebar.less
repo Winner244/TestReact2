@@ -5,16 +5,16 @@
     padding: 12px;
     border-radius: 8px;
 
-    .toggle {
+    &__toggle {
         display: none;
     }
 
-    form {
+    &__form {
         display: flex;
         flex-direction: column;
         gap: 8px;
 
-        label {
+        &-label {
             display: flex;
             flex-direction: column;
             font-size: 0.9rem;
@@ -28,7 +28,7 @@
             }
         }
 
-        .actions {
+        &-actions {
             display: flex;
             gap: 8px;
         }
@@ -46,11 +46,11 @@
         transition: transform .2s;
         z-index: 20;
 
-        &.open {
+        &--open {
             transform: translateX(0);
         }
 
-        .toggle {
+        &__toggle {
             display: block;
             margin-bottom: 10px;
         }
