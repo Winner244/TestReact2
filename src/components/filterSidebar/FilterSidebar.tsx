@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { parseSearchParams } from '@/utils/url'
 import { useSearchParams } from 'react-router-dom'
 import { customZodResolver } from '../../hooks/customZodResolver'
 
@@ -9,12 +10,7 @@ import './filterSidebar.less'
 
 const FilterSidebar: React.FC = () => {
     const [searchParams, setSearchParams] = useSearchParams()
-    const initial: any = {};
-    const empty: any = {};
-    searchParams.forEach((value, key) => {
-        initial[key] = value
-        empty[key] = ''
-    });
+    const { initial, empty } = parseSearchParams(searchParams);
     const { register, watch, handleSubmit, setValue, reset, getValues, formState: { errors } } 
         = useForm({ resolver: customZodResolver(FiltersSchema) as any, defaultValues: empty })
     const [open, setOpen] = useState(false)

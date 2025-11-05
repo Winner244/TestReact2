@@ -16,7 +16,7 @@ const Home: React.FC = () => {
     const [searchParams] = useSearchParams()
 
     useEffect(() => {
-        if(products && products.length > 0) return
+        if(products && products.length > 1) return
         dispatch(fetchProducts())
     }, [dispatch])
 

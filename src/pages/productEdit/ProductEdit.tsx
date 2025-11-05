@@ -9,7 +9,7 @@ import { ListButton } from '@/components/tiptap-ui/list-button/list-button'
 import StarterKit from '@tiptap/starter-kit'
 
 import { useAppDispatch, useAppSelector } from '../../utils/hooks'
-import { fetchProductById, Product, upsertProduct } from '../../features/products/productsSlice'
+import { fetchProductById, Product, updateProduct } from '../../features/products/productsSlice'
 
 import '../../styles/_variables.scss';
 import '../../styles/_keyframe-animations.scss';
@@ -71,7 +71,7 @@ const ProductEdit: React.FC = () => {
 
     const onSubmit = (data: EditForm) => {
         const updated: Product = { ...product, ...data, description: editor?.getHTML() ?? product.description }
-        dispatch(upsertProduct(updated));
+        dispatch(updateProduct(updated));
         console.log('updated', updated);
         navigate(`/product/${updated.id}`);
     }

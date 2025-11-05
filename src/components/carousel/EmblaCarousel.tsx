@@ -20,24 +20,30 @@ const EmblaCarousel: React.FC<EmblaCarouselProps> = ({ slides, options }) => {
     const onThumbClick = useCallback(
         (index: number) => {
             if (!emblaMainApi || !emblaThumbsApi) return
+
             emblaMainApi.scrollTo(index)
         },
         [emblaMainApi, emblaThumbsApi]
     )
 
+
     const onSelect = useCallback(() => {
         if (!emblaMainApi || !emblaThumbsApi) return
+
         setSelectedIndex(emblaMainApi.selectedScrollSnap())
         emblaThumbsApi.scrollTo(emblaMainApi.selectedScrollSnap())
     }, [emblaMainApi, emblaThumbsApi, setSelectedIndex])
 
+
     useEffect(() => {
         if (!emblaMainApi) return
+
         onSelect()
 
         emblaMainApi.on('select', onSelect).on('reInit', onSelect)
     }, [emblaMainApi, onSelect])
 
+    
     return (
         <div className="embla-carousel">
             <div className="embla-carousel__viewport" ref={emblaMainRef}>

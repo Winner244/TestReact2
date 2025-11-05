@@ -53,7 +53,7 @@ const productsSlice = createSlice({
     name: 'products',
     initialState,
     reducers: {
-        upsertProduct(state, action: PayloadAction<Product>) {
+        updateProduct(state, action: PayloadAction<Product>) {
             const p = action.payload
             const existingIndex = state.items.findIndex((i) => i.id === p.id)
             if (existingIndex >= 0) state.items[existingIndex] = p
@@ -85,5 +85,5 @@ const productsSlice = createSlice({
     },
 })
 
-export const { upsertProduct, replaceAll } = productsSlice.actions
+export const { updateProduct, replaceAll } = productsSlice.actions
 export default productsSlice.reducer
