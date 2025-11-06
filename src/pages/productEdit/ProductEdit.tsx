@@ -66,8 +66,8 @@ const ProductEdit: React.FC = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [product, reset])
 
-    if (loading) return <div className='p-5'>Loading product...</div>
-    if (!product) return <div className='p-5'>Product not found</div>
+    if (loading) return <div className='p-5 text-center'>Loading product...</div>
+    if (!product) return <div className='p-5 text-center'>Product not found</div>
 
     const onSubmit = (data: EditForm) => {
         const updated: Product = { ...product, ...data, description: editor?.getHTML() ?? product.description }

@@ -23,8 +23,8 @@ const ProductDetails: React.FC = () => {
         dispatch(fetchProductById(Number(id))).finally(() => setLoading(false))
     }, [dispatch, id, product])
 
-    if (loading) return <div className='p-5'>Loading product...</div>
-    if (!product) return <div className='p-5'>Product not found</div>
+    if (loading) return <div className='p-5 text-center'>Loading product...</div>
+    if (!product) return <div className='p-5 text-center'>Product not found</div>
 
     return (
         <div className="product-details container">
