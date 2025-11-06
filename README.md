@@ -13,3 +13,5 @@ All bonuses are implemented:
 3. edit the description with an RTE (TipTap)
 
 Link: https://jolly-figolla-2c3ea1.netlify.app/
+
+AI was used: Copilot from GitHub in VS Code (model: GPT5-mini) to generate base code which I changed after (changed: structure of files/folders, added BEM styles + bootstrap, changed visual UI, code rules inside, code style, logic of pages, ...) also Copilot helped with things which I didn't know + with resolving different small problems
